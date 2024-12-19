@@ -1,59 +1,87 @@
 package entities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reservation {
-	private int id;
-	private Date dateDebut;
-	private Date dateFin;
-	private Chambre chambre;
+    private int id;
+    private Date dateDebut;
+    private Date dateFin;
+    private Chambre chambre;
     private Client client;
     public static int count = 0;
-    
-	public Reservation(Date dateDebut, Date dateFin, Chambre chambre, Client client) {
-		this.id = ++count;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.chambre = chambre;
-		this.client = client;
-	}
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-	public int getId() {
-		return id;
-	}
-	public Date getDateDebut() {
-		return dateDebut;
-	}
+    public Reservation(Date dateDebut, Date dateFin, Chambre chambre, Client client) {
+        this.id = ++count;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.chambre = chambre;
+        this.client = client;
+    }
 
-	public Date getDateFin() {
-		return dateFin;
-	}
+    public Reservation(int id, Date dateDebut, Date dateFin, Chambre chambre, Client client) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.chambre = chambre;
+        this.client = client;
+    }
 
-	public Chambre getChambre() {
-		return chambre;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public Client getClient() {
-		return client;
-	}
+    public Date getDateDebut() {
+        return dateDebut;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Date getDateFin() {
+        return dateFin;
+    }
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
+    public Chambre getChambre() {
+        return chambre;
+    }
 
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
+    public Client getClient() {
+        return client;
+    }
 
-	public void setChambre(Chambre chambre) {
-		this.chambre = chambre;
-	}
+    public String getDateDebutAsString() {
+        return dateFormat.format(dateDebut);
+    }
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    public String getDateFinAsString() {
+        return dateFormat.format(dateFin);
+    }
+
+    public void setDateDebutFromString(String dateDebutStr) throws ParseException {
+        this.dateDebut = dateFormat.parse(dateDebutStr);
+    }
+
+    public void setDateFinFromString(String dateFinStr) throws ParseException {
+        this.dateFin = dateFormat.parse(dateFinStr);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public void setChambre(Chambre chambre) {
+        this.chambre = chambre;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }
